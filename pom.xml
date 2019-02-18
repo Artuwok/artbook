@@ -23,6 +23,7 @@
 
     <modules>
         <module>user-service</module>
+        <module>eureca-service</module>
     </modules>
 
     <build>

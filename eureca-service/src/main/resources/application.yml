@@ -1,0 +1,9 @@
+server:
+  port: 8761  # port for eureca to listen on
+
+eureka:
+  client:
+    register-with-eureka: false # don't register with eureca
+    fetch-registry: false
+  server:
+    wait-time-in-ms-when-sync-empty: 5
