@@ -1,4 +1,4 @@
-# Spring cloud configuration
+# Spring cloud configuration. For now default at http://localhost:8888/userservice/default available
 server:
   port: 8888
 spring:
