@@ -1,0 +1,15 @@
+# Spring cloud configuration
+server:
+  port: 8888
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      server:
+        encrypt.enabled: false
+        git:
+          uri: https://github.com/Artuwok/artbook-config-repo/
+          searchPaths: userservice
+          username: Artuwok
+          password: Civilization1986

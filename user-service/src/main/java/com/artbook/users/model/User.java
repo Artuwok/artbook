@@ -1,13 +1,28 @@
 package com.artbook.users.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @Column(name = "user_id", nullable = false)
     private long userId;
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
-    public User(long l, String name, String lastName) {
+
+    public User() {
+    }
+
+    public User(long l, String firstName, String lastName) {
         this.userId = l;
-        this.name = name;
+        this.firstName = firstName;
         this.lastName = lastName;
     }
 
@@ -19,12 +34,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
