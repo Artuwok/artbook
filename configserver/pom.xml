@@ -17,10 +17,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -46,12 +42,23 @@
         </dependency>
     </dependencies>
 
+    <!--Docker build Config-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <start-class>com.art.configserver.ConfigServerApplication</start-class>
+        <docker.image.name>artbook/configserver</docker.image.name>
+        <docker.image.tag>chapter4</docker.image.tag>
+    </properties>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <finalName>configserver</finalName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -76,9 +76,15 @@ RUN set -ex; \
 # ... and verify that it actually worked for one of the alternatives we care about
 	update-alternatives --query java | grep -q 'Status: manual'
 
+# making working directory and copieng files to it
+EXPOSE 8888
+RUN mkdir -p /usr/local/configserver
+WORKDIR /usr/local/configserver/
+ADD target/configserver.jar /usr/local/configserver
+ENTRYPOINT ["java", "-jar", "configserver.jar"]
 # https://docs.oracle.com/javase/10/tools/jshell.htm
 # https://en.wikipedia.org/wiki/JShell
-CMD ["jshell"]
+# CMD ["jshell"]
 
 # If you're reading this and have any feedback on how this image could be
 # improved, please open an issue or a pull request so we can discuss it!
