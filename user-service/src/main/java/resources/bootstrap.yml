@@ -6,4 +6,4 @@ spring:
       default
   cloud:
     config:
-      enabled: true
+      uri: http://localhost:8888 # where to look for a config from config service

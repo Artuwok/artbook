@@ -22,8 +22,9 @@
     </properties>
 
     <modules>
-        <module>user-service</module>
+        <module>configserver</module>
         <module>eureca-service</module>
+        <module>user-service</module>
     </modules>
 
     <build>
