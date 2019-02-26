@@ -6,16 +6,6 @@
 
 FROM buildpack-deps:stretch-scm
 
-# A few reasons for installing distribution-provided OpenJDK:
-#
-#  1. Oracle.  Licensing prevents us from redistributing the official JDK.
-#
-#  2. Compiling OpenJDK also requires the JDK to be installed, and it gets
-#     really hairy.
-#
-#     For some sample build times, see Debian's buildd logs:
-#       https://buildd.debian.org/status/logs.php?pkg=openjdk-11
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzip2 \
 		unzip \
@@ -76,9 +66,14 @@ RUN set -ex; \
 # ... and verify that it actually worked for one of the alternatives we care about
 	update-alternatives --query java | grep -q 'Status: manual'
 
+# making working directory and copieng files to it
+RUN mkdir -p /usr/local/userservice
+WORKDIR /usr/local/userservice/
+ADD target/userservice.jar /usr/local/userservice
+ENTRYPOINT ["java", "-jar", "userservice.jar"]
 # https://docs.oracle.com/javase/10/tools/jshell.htm
 # https://en.wikipedia.org/wiki/JShell
-CMD ["jshell"]
+# CMD ["jshell"]
 
 # If you're reading this and have any feedback on how this image could be
 # improved, please open an issue or a pull request so we can discuss it!

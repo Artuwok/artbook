@@ -6,16 +6,6 @@
 
 FROM buildpack-deps:stretch-scm
 
-# A few reasons for installing distribution-provided OpenJDK:
-#
-#  1. Oracle.  Licensing prevents us from redistributing the official JDK.
-#
-#  2. Compiling OpenJDK also requires the JDK to be installed, and it gets
-#     really hairy.
-#
-#     For some sample build times, see Debian's buildd logs:
-#       https://buildd.debian.org/status/logs.php?pkg=openjdk-11
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		bzip2 \
 		unzip \
@@ -77,7 +67,6 @@ RUN set -ex; \
 	update-alternatives --query java | grep -q 'Status: manual'
 
 # making working directory and copieng files to it
-EXPOSE 8888
 RUN mkdir -p /usr/local/configserver
 WORKDIR /usr/local/configserver/
 ADD target/configserver.jar /usr/local/configserver

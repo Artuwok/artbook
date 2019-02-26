@@ -6,8 +6,9 @@
     <groupId>com.artbook</groupId>
     <artifactId>eurekasvr</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Eureka Server</name>
+    <name>eurekasvr</name>
     <description>Eureka Server</description>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,8 +17,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <!--Docker build Config-->
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
+        <start-class>com.artbook.eurecaservice.EurekaServerApplication</start-class>
+        <docker.image.name>artbook/eurekasvr</docker.image.name>
+        <docker.image.tag>chapter4</docker.image.tag>
     </properties>
 
     <dependencies>
@@ -25,29 +31,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
-
-        <!--xml dependecies for tomcat server start-->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>javax.activation-api</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -61,6 +44,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <plugins>

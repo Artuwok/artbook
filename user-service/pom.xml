@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.artbook</groupId>
-    <artifactId>user-service</artifactId>
+    <artifactId>userservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>User service</name>
     <description>Artbook user service</description>
@@ -29,13 +29,8 @@
         </dependencies>
     </dependencyManagement>
 
-    <properties>
-        <java.version>11</java.version>
-    </properties>
-
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -63,6 +58,18 @@
             <version>8.0.13</version>
         </dependency>
     </dependencies>
+
+    <!--Docker build Config-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <start-class>com.artbook.users.Application</start-class>
+        <docker.image.name>artbook/userservice</docker.image.name>
+        <docker.image.tag>chapter4</docker.image.tag>
+    </properties>
+
+
+
 
     <build>
         <plugins>

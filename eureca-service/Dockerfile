@@ -76,9 +76,15 @@ RUN set -ex; \
 # ... and verify that it actually worked for one of the alternatives we care about
 	update-alternatives --query java | grep -q 'Status: manual'
 
+# making working directory and copieng files to it
+EXPOSE 8888
+RUN mkdir -p /usr/local/eurekasvr
+WORKDIR /usr/local/eurekasvr/
+ADD target/eurekasvr.jar /usr/local/eurekasvr
+ENTRYPOINT ["java", "-jar", "eurekasvr.jar"]
 # https://docs.oracle.com/javase/10/tools/jshell.htm
 # https://en.wikipedia.org/wiki/JShell
-CMD ["jshell"]
+# CMD ["jshell"]
 
 # If you're reading this and have any feedback on how this image could be
 # improved, please open an issue or a pull request so we can discuss it!
