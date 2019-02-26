@@ -22,8 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <start-class>com.artbook.eurecaservice.EurekaServerApplication</start-class>
-        <docker.image.name>artbook/eurekasvr</docker.image.name>
-        <docker.image.tag>chapter4</docker.image.tag>
+        <docker.image.name>artbook/eureka-service</docker.image.name>
     </properties>
 
     <dependencies>

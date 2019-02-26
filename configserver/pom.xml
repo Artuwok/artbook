@@ -48,7 +48,6 @@
         <java.version>11</java.version>
         <start-class>com.art.configserver.ConfigServerApplication</start-class>
         <docker.image.name>artbook/configserver</docker.image.name>
-        <docker.image.tag>chapter4</docker.image.tag>
     </properties>
 
     <build>

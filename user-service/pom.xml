@@ -65,7 +65,6 @@
         <java.version>11</java.version>
         <start-class>com.artbook.users.Application</start-class>
         <docker.image.name>artbook/userservice</docker.image.name>
-        <docker.image.tag>chapter4</docker.image.tag>
     </properties>
 
 
