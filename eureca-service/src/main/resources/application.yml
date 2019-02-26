@@ -1,5 +1,5 @@
 server:
-  port: 8761  # port for eureka to listen on
+  port: 8761  # port for eureka to listen on   http://localhost:8761/
 
 eureka:
   client:
