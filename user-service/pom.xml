@@ -38,7 +38,7 @@
         <!--eureka dependency for service discovery-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <!--cloud client for configuration-->
         <dependency>
@@ -64,7 +64,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <start-class>com.artbook.users.Application</start-class>
-        <docker.image.name>artbook/userservice</docker.image.name>
     </properties>
 
 
@@ -75,6 +74,45 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <finalName>userservice</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.27.2</version>
+                <executions>
+                    <execution>
+                        <id>userservice</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>userservice:1.0</name>
+                                    <build>
+                                        <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                                        <filter>@</filter>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

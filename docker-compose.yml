@@ -2,28 +2,28 @@ version: '3'
 
 services:
   eurekaserver:
-    image:   artbook/eureka-service
+    image:   eurekasvr:1.0
     ports:
       - "8761:8761"
   configserver:
-    image: artbook/configserver
+    image: configserver:1.0
     ports:
       - "8888:8888"
     environment:
       EUREKASERVER_PORT: 8761
       EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
 
-  database:
-    image: postgres:9.5
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=p0stgr@s
-      - POSTGRES_DB=eagle_eye_local
+  #  database:
+  #  image: postgres:9.5
+  #  ports:
+  #   - "5432:5432"
+  # environment:
+  #   - POSTGRES_USER=postgres
+  #    - POSTGRES_PASSWORD=p0stgr@s
+  #     - POSTGRES_DB=eagle_eye_local
 
   user-service:
-    image: artbook/userservice
+    image: userservice:1.0
     ports:
       - "8082:8082"
     environment:

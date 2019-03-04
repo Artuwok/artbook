@@ -47,7 +47,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>
         <start-class>com.art.configserver.ConfigServerApplication</start-class>
-        <docker.image.name>artbook/configserver</docker.image.name>
     </properties>
 
     <build>
@@ -58,6 +57,42 @@
                 <configuration>
                     <finalName>configserver</finalName>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.27.2</version>
+                <executions>
+                    <execution>
+                        <id>configserver</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>configserver:1.0</name>
+                                    <build>
+                                        <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                                        <filter>@</filter>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
