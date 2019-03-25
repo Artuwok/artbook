@@ -3,11 +3,13 @@ spring:
     name: configserver
   cloud:
     config:
-      fail-fast: true
-      discovery.enabled: true
+      fail-fast: false
+      discovery.enabled: false
+      uri: http://configserver:8888
 
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
-    serviceUrl.defaultZone: http://eurekaserver:8761/
+    serviceUrl.defaultZone: http://eurekaserver:8761/eureka
+

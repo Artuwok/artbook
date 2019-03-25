@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.artbook</groupId>
-    <artifactId>eurekasvr</artifactId>
+    <artifactId>eurekaserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eurekasvr</name>
+    <name>eurekaserver</name>
     <description>Eureka Server</description>
     <packaging>jar</packaging>
 
@@ -28,6 +28,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
         <!--xml dependecies for tomcat server start-->
@@ -71,7 +76,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>eurekasvr</finalName>
+                    <finalName>eurekaserver</finalName>
                 </configuration>
                 <executions>
                     <execution>
@@ -92,14 +97,14 @@
                 <version>0.27.2</version>
                 <executions>
                     <execution>
-                        <id>eurekasvr</id>
+                        <id>eurekaserver</id>
                         <goals>
                             <goal>build</goal>
                         </goals>
                         <configuration>
                             <images>
                                 <image>
-                                    <name>eurekasvr:1.0</name>
+                                    <name>eurekaserver:1.0</name>
                                     <build>
                                         <dockerFile>${project.basedir}/Dockerfile</dockerFile>
                                         <filter>@</filter>

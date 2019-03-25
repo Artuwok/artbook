@@ -78,10 +78,10 @@ RUN set -ex; \
 
 # making working directory and copieng files to it
 EXPOSE 8761
-RUN mkdir -p /usr/local/eurekasvr
-WORKDIR /usr/local/eurekasvr/
-ADD target/eurekasvr.jar /usr/local/eurekasvr
-ENTRYPOINT ["java", "-jar", "eurekasvr.jar"]
+RUN mkdir -p /usr/local/eurekaserver
+WORKDIR /usr/local/eurekaserver/
+ADD target/eurekaserver.jar /usr/local/eurekaserver
+ENTRYPOINT ["java", "-jar", "eurekaserver.jar"]
 # https://docs.oracle.com/javase/10/tools/jshell.htm
 # https://en.wikipedia.org/wiki/JShell
 # CMD ["jshell"]
