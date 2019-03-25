@@ -9,6 +9,8 @@ services:
     depends_on:
       - eurekaserver
     restart: on-failure
+    links:
+      - eurekaserver
 
   eurekaserver:
     image: eurekasvr:1.0
@@ -17,30 +19,9 @@ services:
 
 
 
-  users_db:
-    image: mysql:5.7
-      container_name: users_db
-      restart: always
-    environment:
-      - MYSQL_DATABASE=artbook
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
-    volumes:
-      - users_db:/var/lib/mysql
-    ports:
-      - "3306:3306"
-    depends_on:
-      - eurekaserver
 
-  user-service:
-    image: userservice:1.0
-    ports:
-      - "8080:8080"
-    depends_on:
-      - eurekaserver
-      - configserver
-    restart: on-failure
+
+
 volumes:
   users_db:
 

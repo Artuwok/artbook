@@ -4,3 +4,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+
+    serviceUrl.defaultZone: http://eurekaserver:8761/
+
