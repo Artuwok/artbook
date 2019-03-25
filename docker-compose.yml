@@ -1,39 +1,47 @@
 version: '3'
 
 services:
-  eurekaserver:
-    image:   eurekasvr:1.0
-    ports:
-      - "8761:8761"
+
   configserver:
     image: configserver:1.0
     ports:
       - "8888:8888"
-    environment:
-      EUREKASERVER_PORT: 8761
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+    depends_on:
+      - eurekaserver
+    restart: on-failure
 
-  #  database:
-  #  image: postgres:9.5
-  #  ports:
-  #   - "5432:5432"
-  # environment:
-  #   - POSTGRES_USER=postgres
-  #    - POSTGRES_PASSWORD=p0stgr@s
-  #     - POSTGRES_DB=eagle_eye_local
+  eurekaserver:
+    image: eurekasvr:1.0
+    ports:
+      - "8761:8761"
+
+
+
+  users_db:
+    image: mysql:5.7
+      container_name: users_db
+      restart: always
+    environment:
+      - MYSQL_DATABASE=artbook
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    volumes:
+      - users_db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    depends_on:
+      - eurekaserver
 
   user-service:
     image: userservice:1.0
     ports:
-      - "8082:8082"
-    environment:
-      PROFILE: "default"
-      SERVER_PORT: "8082"
-      ES_PORT:           9200
-      DATABASE_PORT:     5432
-      CONFIGSERVER_PORT: 8888
-      EUREKASERVER_PORT: 8761
-      AUTHSERVER_PORT:   8091
-      CONFIGSERVER_URI: "http://configserver:8888"
-      EUREKASERVER_URI: "http://eurekaserver:8761/eureka/"
+      - "8080:8080"
+    depends_on:
+      - eurekaserver
+      - configserver
+    restart: on-failure
+volumes:
+  users_db:
+
 

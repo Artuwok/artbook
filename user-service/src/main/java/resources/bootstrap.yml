@@ -1,9 +1,24 @@
 spring:
   application:
     name: userservice
-  profiles:
-    active:
-      default
   cloud:
     config:
-      uri: http://localhost:8888 # where to look for a config from config service
+      fail-fast: true
+      discovery:
+        enabled: true
+      retry:
+        initialInterval: 2000
+        multiplier: 1.5
+        maxInterval: 60000
+        maxAttempts: 100
+
+server:
+  port: 8888
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl.defaultZone: http://localhost:8761/eureka/
+
+
+

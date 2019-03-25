@@ -1,9 +1,0 @@
-server:
-  port: 8761  # port for eureka to listen on   http://localhost:8761/
-
-eureka:
-  client:
-    register-with-eureka: false # don't register with eureka, because it's eureka itself
-    fetch-registry: false # don't cache registry information locally
-  server:
-    wait-time-in-ms-when-sync-empty: 5 # initial time before server will take requests

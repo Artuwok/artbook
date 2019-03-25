@@ -67,6 +67,7 @@ RUN set -ex; \
 	update-alternatives --query java | grep -q 'Status: manual'
 
 # making working directory and copieng files to it
+EXPOSE 8080
 RUN mkdir -p /usr/local/userservice
 WORKDIR /usr/local/userservice/
 ADD target/userservice.jar /usr/local/userservice

@@ -4,8 +4,6 @@ server:
 spring:
   cloud:
     config:
-      discovery:
-        enabled: true
       server:
         encrypt.enabled: false
         git:
@@ -13,3 +11,5 @@ spring:
           searchPaths: userservice
           username: Artuwok
           password: Civilization1986
+          timeout: 10
+          force-pull: true

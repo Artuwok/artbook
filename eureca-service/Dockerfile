@@ -77,7 +77,7 @@ RUN set -ex; \
 	update-alternatives --query java | grep -q 'Status: manual'
 
 # making working directory and copieng files to it
-EXPOSE 8888
+EXPOSE 8761
 RUN mkdir -p /usr/local/eurekasvr
 WORKDIR /usr/local/eurekasvr/
 ADD target/eurekasvr.jar /usr/local/eurekasvr

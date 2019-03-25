@@ -67,6 +67,7 @@ RUN set -ex; \
 	update-alternatives --query java | grep -q 'Status: manual'
 
 # making working directory and copieng files to it
+EXPOSE 8888
 RUN mkdir -p /usr/local/configserver
 WORKDIR /usr/local/configserver/
 ADD target/configserver.jar /usr/local/configserver
