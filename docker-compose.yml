@@ -17,10 +17,11 @@ services:
     ports:
       - "8761:8761"
 
+
   users_db:
     image: mysql:5.7
-      container_name: users_db
-      restart: always
+    container_name: users_db
+    restart: always
     environment:
       - MYSQL_DATABASE=artbook
       - MYSQL_ROOT_PASSWORD=password
@@ -33,16 +34,20 @@ services:
     depends_on:
       - eurekaserver
 
-    user-service:
-      image: userservice:1.0
-      ports:
-        - "8080:8080"
-      depends_on:
-        - eurekaserver
-        - configserver
-      links:
-        - eurekaserver
-      restart: on-failure
+  userservice:
+    image: userservice:1.0
+    ports:
+      - "8080:8080"
+    links:
+      - configserver
+      - eurekaserver
+      - users_db
+    restart: always
+    depends_on:
+      - configserver
+      - eurekaserver
+      - users_db
+
 
 volumes:
   users_db:

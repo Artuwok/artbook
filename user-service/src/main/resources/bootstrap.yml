@@ -1,0 +1,20 @@
+#spring.profiles.active: default
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: userservice
+  profiles:
+    active: default
+  cloud:
+    config:
+      enabled: true
+      uri: http://configserver:8888
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl.defaultZone: http://eurekaserver:8761/eureka
