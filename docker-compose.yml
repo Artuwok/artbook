@@ -4,6 +4,7 @@ services:
 
   configserver:
     image: configserver:1.0
+    container_name: configserver_container
     ports:
       - "8888:8888"
     depends_on:
@@ -14,13 +15,14 @@ services:
 
   eurekaserver:
     image: eurekaserver:1.0
+    container_name: eurekaserver_container
     ports:
       - "8761:8761"
 
 
   users_db:
     image: mysql:5.7
-    container_name: users_db
+    container_name: users_db_container
     restart: always
     environment:
       - MYSQL_DATABASE=artbook
@@ -36,6 +38,7 @@ services:
 
   userservice:
     image: userservice:1.0
+    container_name: uservervice_container
     ports:
       - "8080:8080"
     links:

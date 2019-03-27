@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,8 +18,6 @@ public class UserServiceController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<User> getUser(@PathVariable long userId) {
-        final ArrayList<User> users = new ArrayList<>();
-       users.add(new User(1l, "ssss", "zzzz"));
-        return  users;
+        return userService.findAllUsers();
     }
 }
