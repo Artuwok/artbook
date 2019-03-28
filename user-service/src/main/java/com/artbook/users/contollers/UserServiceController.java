@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "v1/users/{userId}")
+@RequestMapping(value = "v1/users/")
 public class UserServiceController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<User> getUser(@PathVariable long userId) {
+    @RequestMapping(value = "{userId}", method = RequestMethod.GET)
+    public User getUser(@PathVariable long userId) {
+        return userService.findUserById(userId);
+    }
+
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public List<User> getAllUsers() {
         return userService.findAllUsers();
     }
 }
