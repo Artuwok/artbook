@@ -39,13 +39,13 @@ services:
   userservice:
     image: userservice:1.0
     container_name: uservervice_container
+    restart: always
     ports:
       - "8080:8080"
     links:
       - configserver
       - eurekaserver
       - users_db
-    restart: always
     depends_on:
       - configserver
       - eurekaserver

@@ -12,6 +12,11 @@ spring:
     config:
       enabled: true
       uri: http://configserver:8888
+      fail-fast: true
+      retry:
+        max-attempts: 5
+        initial-interval: 5000
+        multiplier: 1.5
 
 eureka:
   client:
