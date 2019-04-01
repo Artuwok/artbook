@@ -8,6 +8,6 @@ spring:
         encrypt.enabled: false
         git:
           uri: https://github.com/Artuwok/artbook-config-repo.git
-          searchPaths: userservice
+          searchPaths: userservice, statisticsservice
           username: Artuwok
           password: Civilization1986

@@ -25,6 +25,7 @@
         <module>configserver</module>
         <module>eureca-service</module>
         <module>user-service</module>
+        <module>statistics-service</module>
     </modules>
 
     <build>

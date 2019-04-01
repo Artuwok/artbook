@@ -1,11 +1,11 @@
 #spring.profiles.active: default
 
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
-    name: userservice
+    name: statisticsservice
   profiles:
     active: default
   cloud:

@@ -32,7 +32,7 @@ services:
     volumes:
       - users_db:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "33060:3306"
     depends_on:
       - eurekaserver
 
@@ -51,8 +51,39 @@ services:
       - eurekaserver
       - users_db
 
+  statistics_db:
+    image: mysql:5.7
+    container_name: statistics_db_container
+    restart: always
+    environment:
+      - MYSQL_DATABASE=statistics
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    volumes:
+      - statistics_db:/var/lib/mysql
+    ports:
+      - "33061:3306"
+    depends_on:
+      - eurekaserver
+
+  statisticsservice:
+    image: statisticsservice:1.0
+    container_name: statisticsservice_container
+    restart: always
+    ports:
+      - "8081:8081"
+    links:
+      - configserver
+      - eurekaserver
+      - statistics_db
+    depends_on:
+      - configserver
+      - eurekaserver
+      - statistics_db
 
 volumes:
   users_db:
+  statistics_db:
 
 
